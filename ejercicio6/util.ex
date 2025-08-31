@@ -1,7 +1,7 @@
 defmodule Util do
   @moduledoc """
   Módulo utilitario que maneja la interacción con el usuario
-  mediante cuadros de texto Java y funciones auxiliares.
+  mediante cuadros de diálogo en Java y operaciones auxiliares.
   """
 
   @doc """
@@ -13,7 +13,7 @@ defmodule Util do
 
   @doc """
   Solicita al usuario una entrada de tipo texto (string).
-  Usa `try/rescue` para manejar errores en la captura.
+  En caso de error, muestra un mensaje y vuelve a pedir la entrada.
   """
   def input(message, :string) do
     try do
@@ -29,7 +29,7 @@ defmodule Util do
 
   @doc """
   Solicita al usuario una entrada de tipo real (float).
-  Usa `try/rescue` para manejar errores y vuelve a pedir si hay un fallo.
+  En caso de error, muestra un mensaje y vuelve a pedir la entrada.
   """
   def input(message, :float) do
     try do
@@ -45,9 +45,13 @@ defmodule Util do
   end
 
   @doc """
-  Calcula el costo de envío según el tipo de envío y el peso del paquete.
-  Usa `if`, `cond` y `case` con pattern matching.
-  Retorna el costo total como número.
+  Calcula el costo de envío según el tipo y el peso del paquete:
+  - **Económico**: $5000 por kg
+  - **Express**: $8000 por kg
+  - **Internacional**:
+    - hasta 5 kg → $15000 por kg
+    - más de 5 kg → $12000 por kg
+  Si el tipo no es válido, retorna 0.
   """
   def calcular_costo(tipo, peso) when is_float(peso) or is_integer(peso) do
     case tipo do

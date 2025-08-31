@@ -1,18 +1,19 @@
 defmodule Util do
   @moduledoc """
-  Modulo para mostrar mensajes usando Java
+  Funciones auxiliares para interacción con el usuario y cálculo de inventario.
+  Usa cuadros de diálogo en Java para entrada y salida.
   """
 
   @doc """
-  Muestra un mensaje al usuario usando un cuadro de diálogo Java.
+  Muestra un mensaje en un cuadro de diálogo.
   """
   def show_message(message) do
     System.cmd("java", ["-cp", ".", "Mensaje", message])
   end
 
-
   @doc """
-  Solicita un texto al usuario usando un cuadro de diálogo Java.
+  Solicita texto al usuario.
+  Retorna un string. Reintenta si hay error.
   """
   def input(message, :string) do
     try do
@@ -28,7 +29,8 @@ defmodule Util do
 
 
   @doc """
-  Solicita un número entero al usuario usando un cuadro de diálogo Java.
+  Solicita un número entero al usuario.
+  Retorna un integer. Reintenta si hay error.
   """
   def input(message, :integer) do
     try do
@@ -43,9 +45,9 @@ defmodule Util do
     end
   end
 
-
   @doc """
-  Solicita un número flotante al usuario usando un cuadro de diálogo Java.
+  Solicita un número flotante al usuario.
+  Retorna un float. Reintenta si hay error.
   """
   def input(message, :float) do
     try do
@@ -62,7 +64,9 @@ defmodule Util do
 
 
   @doc """
-  Calcula el valor total de inventario dados las unidades y el precio unitario.
+  Calcula el valor total del inventario (unidades × precio).
+  - Retorna un float si valores son positivos.
+  - Retorna {:error, msg} si hay valores negativos.
   """
   def calcular_inventario(unidades, precio) when unidades >= 0 and precio >= 0 do
     unidades * precio

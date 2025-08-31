@@ -1,12 +1,13 @@
 defmodule Main do
   @moduledoc """
-  Ejemplo de aplicación para calcular el rendimiento de combustible de un conductor.
+  Programa para calcular el rendimiento de combustible de un conductor.
   """
 
   @doc """
-  Solicita nombre, distancia y litros al usuario.
-  Calcula el rendimiento.
-  Muestra los resultados o errores.
+  Ejecuta el programa:
+  - Solicita nombre, distancia y litros al usuario.
+  - Calcula el rendimiento.
+  - Muestra los resultados o un mensaje de error.
   """
   def run do
     # Pedir datos usando tu clase Java (cuadros de texto)
@@ -32,4 +33,5 @@ defmodule Main do
   end
 end
 
+# Ejecutar el programa
 Main.run()

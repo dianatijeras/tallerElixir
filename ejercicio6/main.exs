@@ -1,24 +1,31 @@
 defmodule Main do
   @moduledoc """
-  Módulo principal del programa de Cálculo de Costo de Envío.
-  Se encarga de pedir los datos al usuario, calcular el costo
-  y mostrar el resultado final.
+  Módulo principal del programa de cálculo de costo de envío.
+  Se encarga de solicitar los datos al usuario, calcular el costo
+  y mostrar el resultado.
   """
 
+  @doc """
+  Ejecuta el flujo principal del programa:
+  - Pide nombre del cliente, peso y tipo de envío.
+  - Calcula el costo según el tipo.
+  - Muestra los datos y el costo total.
+  Retorna una tupla con la información ingresada y calculada.
+  """
   def run do
-    # 1. Ingresar nombre del cliente
+    # Ingresar nombre del cliente
     cliente = Util.input("Ingrese el nombre del cliente:", :string)
 
-    # 2. Ingresar peso del paquete en kg
+    # Ingresar peso del paquete en kg
     peso = Util.input("Ingrese el peso del paquete en kg:", :float)
 
-    # 3. Ingresar tipo de envío
+    # Ingresar tipo de envío
     tipo_envio = Util.input("Ingrese el tipo de envío (economico, express, internacional):", :string)
 
-    # 4. Calcular costo
+    # Calcular costo
     costo_total = Util.calcular_costo(tipo_envio, peso)
 
-    # 5. Retornar y mostrar la tupla con los datos
+    # Retornar y mostrar la tupla con los datos
     resultado = {cliente, peso, tipo_envio, costo_total}
 
     Util.show_message("""

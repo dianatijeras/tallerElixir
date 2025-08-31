@@ -1,19 +1,19 @@
 defmodule Util do
   @moduledoc """
-  Módulo utilitario que maneja la interacción con el usuario
-  mediante cuadros de texto Java y funciones auxiliares.
+  Módulo utilitario que gestiona la interacción con el usuario mediante
+  cuadros de texto en Java y provee funciones de apoyo para conversiones.
   """
 
   @doc """
-  Muestra un mensaje en un cuadro de diálogo usando la clase Java `Mensaje`.
+  Muestra un mensaje en un cuadro de diálogo Java.
   """
   def show_message(message) do
     System.cmd("java", ["-cp", ".", "Mensaje", message])
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo texto (string).
-  Usa `try/rescue` para manejar errores en la captura.
+  Solicita al usuario un texto (string).
+  Usa `try/rescue` para manejar errores y repite en caso de fallo.
   """
   def input(message, :string) do
     try do
@@ -28,8 +28,8 @@ defmodule Util do
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo real (float).
-  Usa `try/rescue` para manejar errores y vuelve a pedir si hay un fallo.
+  Solicita al usuario un número real (float).
+  Valida la entrada con `try/rescue` y vuelve a pedir si es inválida.
   """
   def input(message, :float) do
     try do
@@ -45,14 +45,14 @@ defmodule Util do
   end
 
   @doc """
-  Convierte una temperatura en Celsius a Fahrenheit.
+  Convierte grados Celsius a Fahrenheit.
   """
   def convertir_a_fahrenheit(celsius) when is_float(celsius) or is_integer(celsius) do
     (celsius * 9 / 5) + 32
   end
 
   @doc """
-  Convierte una temperatura en Celsius a Kelvin.
+  Convierte grados Celsius a Kelvin.
   """
   def convertir_a_kelvin(celsius) when is_float(celsius) or is_integer(celsius) do
     celsius + 273.15

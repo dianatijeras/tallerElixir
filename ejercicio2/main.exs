@@ -1,12 +1,12 @@
 defmodule Main do
   @moduledoc """
-  calcula el valor total de inventario de un libro.
+  Ejecuta el flujo principal del programa de inventario de libros.
   """
 
   @doc """
-  Solicita título, unidades y precio al usuario.
-  Calcula el valor total de inventario.
-  Muestra los resultados o errores.
+  Solicita los datos del libro (título, unidades y precio),
+  calcula el valor total de inventario y muestra el resultado formateado.
+  Maneja errores si la entrada no es válida.
   """
   def run do
     titulo = Util.input("Ingrese el título del libro:", :string)
@@ -31,4 +31,5 @@ defmodule Main do
   end
 end
 
+# Ejecutar el programa
 Main.run()

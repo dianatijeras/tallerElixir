@@ -1,18 +1,19 @@
 defmodule Util do
   @moduledoc """
-  Módulo de utilidades para manejar entrada y salida de datos,
-  además del cálculo del salario total de un empleado.
+  Funciones auxiliares para manejo de entrada/salida de datos
+  y cálculo del salario total de un empleado usando cuadros de diálogo Java.
   """
 
   @doc """
-  Muestra un mensaje en un cuadro de diálogo usando la clase Java `Mensaje`.
+  Muestra un mensaje en un cuadro de diálogo.
   """
   def mostrar(message) do
     System.cmd("java", ["-cp", ".", "Mensaje", message])
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo texto (string).
+  Solicita texto al usuario y retorna un string.
+  Reintenta en caso de error.
   """
   def input(message, :string) do
     try do
@@ -27,7 +28,8 @@ defmodule Util do
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo real (float).
+  Solicita un número flotante al usuario.
+  Retorna un float. Reintenta si la entrada es inválida.
   """
   def input(message, :float) do
     try do
@@ -43,7 +45,8 @@ defmodule Util do
   end
 
   @doc """
-  Solicita un número entero al usuario usando un cuadro de diálogo Java.
+  Solicita un número entero al usuario.
+  Retorna un integer. Reintenta si la entrada es inválida.
   """
   def input(message, :integer) do
     try do
@@ -60,10 +63,9 @@ defmodule Util do
 
   @doc """
   Calcula el salario total de un empleado.
-  - nombre: string
-  - salario_base: número (float o integer, debe ser >= 0)
-  - horas_extras: entero (>= 0)
   Cada hora extra se paga al 1.5x del valor de una hora normal.
+  - Retorna el salario total si los valores son positivos.
+  - Retorna {:error, msg} si hay valores negativos.
   """
   def calcular_salario_total(_nombre, salario_base, horas_extras)
       when salario_base >= 0 and horas_extras >= 0 do

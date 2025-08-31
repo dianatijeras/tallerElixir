@@ -1,23 +1,28 @@
 defmodule Main do
   @moduledoc """
-  Módulo principal del programa de Registro de Vehículos en un Peaje.
-  Se encarga de pedir los datos al usuario y mostrar el resultado final.
+  Módulo principal para el registro de vehículos en un peaje.
+  Solicita los datos del vehículo y muestra la tarifa correspondiente.
   """
-
+  @doc """
+  Flujo principal del programa:
+    1. Solicita placa, tipo y peso del vehículo.
+    2. Calcula la tarifa según el tipo y peso.
+    3. Muestra el resultado en un cuadro de diálogo.
+  """
   def run do
-    # 1. Ingresar placa
+    # Ingresar placa
     placa = Util.input("Ingrese la placa del vehículo:", :string)
 
-    # 2. Ingresar tipo de vehículo
+    # Ingresar tipo de vehículo
     tipo = Util.input("Ingrese el tipo de vehículo (carro, moto, camion):", :string)
 
-    # 3. Ingresar peso del vehículo
+    # Ingresar peso del vehículo
     peso = Util.input("Ingrese el peso del vehículo en toneladas:", :float)
 
-    # 4. Calcular tarifa
+    # Calcular tarifa
     tarifa = Util.calcular_tarifa(tipo, peso)
 
-    # 5. Mostrar resultado
+    # Mostrar resultado
     Util.show_message("""
     Vehículo #{placa} (#{tipo}) debe pagar $#{tarifa}.
     """)

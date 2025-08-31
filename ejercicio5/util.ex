@@ -1,20 +1,22 @@
 defmodule Util do
   @moduledoc """
-  Módulo utilitario que maneja la interacción con el usuario
-  mediante cuadros de texto Java y funciones auxiliares.
+  Módulo utilitario para el registro de vehículos en un peaje.
+  Maneja interacción con el usuario mediante cuadros de diálogo Java
+  y cálculo de tarifas según el tipo de vehículo y peso.
   """
 
   @doc """
-  Muestra un mensaje en un cuadro de diálogo usando la clase Java `Mensaje`.
+  Muestra un mensaje en un cuadro de diálogo Java.
   """
   def show_message(message) do
     System.cmd("java", ["-cp", ".", "Mensaje", message])
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo texto (string).
-  Usa `try/rescue` para manejar errores en la captura.
+  Solicita al usuario un texto (string).
+  Reintenta en caso de error usando `try/rescue`.
   """
+
   def input(message, :string) do
     try do
       System.cmd("java", ["-cp", ".", "Mensaje", "input", message])
@@ -28,8 +30,8 @@ defmodule Util do
   end
 
   @doc """
-  Solicita al usuario una entrada de tipo real (float).
-  Usa `try/rescue` para manejar errores y vuelve a pedir si hay un fallo.
+  Solicita un número flotante al usuario.
+  Valida la entrada y vuelve a pedir si no es válida.
   """
   def input(message, :float) do
     try do
@@ -45,11 +47,11 @@ defmodule Util do
   end
 
   @doc """
-  Calcula la tarifa según el tipo de vehículo y su peso.
-  - Carro: $10,000
-  - Moto: $5,000
-  - Camión: $20,000 + $2,000 por tonelada adicional
-  Retorna el valor de la tarifa final.
+  Calcula la tarifa según el tipo de vehículo y peso:
+    - Carro: $10,000
+    - Moto: $5,000
+    - Camión: $20,000 + $2,000 por tonelada adicional
+  Retorna 0 si el tipo de vehículo es inválido.
   """
   def calcular_tarifa("carro", _peso), do: 10_000
   def calcular_tarifa("moto", _peso), do: 5_000
