@@ -4,7 +4,7 @@ defmodule Util do
   """
 
   @doc """
-    Muestra un mensaje usando un cuadro de diálogo en Java
+  Muestra un mensaje usando un cuadro de diálogo en Java
   """
   def show_message(message) do
     System.cmd("java", ["-cp", ".", "Mensaje", message])

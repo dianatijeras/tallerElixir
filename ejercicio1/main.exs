@@ -1,7 +1,8 @@
-@moduledoc """
-Ejemplo de aplicación para calcular el rendimiento de combustible de un conductor.
-"""
-defmodule Ejercicio1 do
+defmodule Main do
+  @moduledoc """
+  Ejemplo de aplicación para calcular el rendimiento de combustible de un conductor.
+  """
+
   @doc """
   Solicita nombre, distancia y litros al usuario.
   Calcula el rendimiento.
@@ -31,4 +32,4 @@ defmodule Ejercicio1 do
   end
 end
 
-Ejercicio1.run()
+Main.run()
